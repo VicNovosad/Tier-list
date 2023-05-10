@@ -40,11 +40,11 @@ function drop(ev) {
     updateURLAndLocalStorage();
 }
 
-var tiers = document.getElementsByClassName('tier');
-Array.from(tiers).forEach(tier => {
-    tier.draggable = true;
-    tier.addEventListener("dragstart", drag);
-});
+// var tiers = document.getElementsByClassName('tier');
+// Array.from(tiers).forEach(tier => {
+//     tier.draggable = true;
+//     tier.addEventListener("dragstart", drag);
+// });
 
 function updateURLAndLocalStorage() {
     var tiers = document.getElementsByClassName('tier');
