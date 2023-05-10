@@ -7,15 +7,65 @@
         background: #444;
     }
 
-    button{
+    button {
+    background-image: linear-gradient(#ededed, #dddddd);
+    border: 1px solid #d5d5d5;
+    border-radius: 4px;
+    box-sizing: border-box;
+    color: black;
+    cursor: pointer;
+    direction: ltr;
+    display: block;
+    font-family: "SF Pro Text","SF Pro Icons","AOS Icons","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 17px;
+    font-weight: 400;
+    letter-spacing: -.022em;
+    line-height: 1.47059;
+    min-width: 30px;
+    overflow: visible;
+    padding: 4px 15px;
+    text-align: center;
+    vertical-align: baseline;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    white-space: nowrap;
+    }
+
+    button:disabled {
+    cursor: default;
+    opacity: .3;
+    }
+
+    button:hover {
+    background-image: linear-gradient(#eeeeee, #9d9d9d);
+    border-color: #1482D0;
+    text-decoration: none;
+    }
+
+    button:active {
+    background-image: linear-gradient(#cfcfcf, #9a9a9a);
+    border-color: #afafaf;
+    outline: none;
+    }
+
+    button:focus {
+    box-shadow: rgba(255, 255, 255, 0.5) 0 0 0 3px;
+    outline: none;
+    }
+
+    /* button{
         min-width: 100px;
         min-height: 40px;
         border-radius: 5px;
-    }
+        font-size: 1rem;
+    } */
 
     h2.title {
         color: white;
         text-align: center;
+        font-size: 2rem;
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     }
 
     .tier-wrap{
@@ -95,12 +145,19 @@
         margin: 10px;
     }
 
+    .btn-wrap {
+        display: flex;
+        margin-bottom: 10px;
+    }
+
 </style>
 </head>
 <body>
 
 <div class="title-wrap">
-    <h2 class="title">MK Tier list</h2>
+    <h2 class="title">MK Tier list maker</h2>
+</div>
+<div class="btn-wrap">
     <button id="copyButton">Copy URL</button>
     <button id="resetButton">Reset</button>
 </div>
