@@ -12,6 +12,7 @@
 
     body{
         background: #222;
+        background: #171717;
         margin: 0;
     }
 
@@ -86,6 +87,7 @@
         max-width: 1280px;
         width: 100%;
         flex: 1;
+        padding: 20px;
     }
     
     h2.title {
@@ -101,7 +103,7 @@
         display: flex;
         flex-direction: row;
         width: 100%;
-        border: 1px solid #000;
+        /* border: 1px solid #000; */
         border: 1px solid #525244;
         border-bottom: none;
         /* background: linear-gradient(0deg,#20201b 0%,#525244 3%,#525244 97%,#20201b 100%); */
@@ -139,6 +141,7 @@
         width: 65px;
         text-align: center;
         user-select: none;
+        border-right: 2px solid #525244;
     }
 
     .dragDiv {
@@ -150,13 +153,26 @@
     
     .tier{
         /* border: 1px solid black; */
-        background: #333;
+        /* background: #333; */
+        background: rgba(100,100,100,.15);
         padding: 0;
         flex: 1;
         flex-wrap: wrap;
         padding-left: 5px;
+        /* background: linear-gradient(0deg,#20201b 0%,#525244 3%,#525244 97%,#20201b 100%); */
+        position: relative;
     }
 
+    .tier:not(#tier5)::after{
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 2px;
+        background: linear-gradient(90deg,#282014 0%,#805e3d 3%,#805e3d 97%,#20201b 100%);
+        bottom: -2px;
+        left: -1px;
+    }
+    
     .dragDiv {
         /* width: 100px; */
         height: 100px;
