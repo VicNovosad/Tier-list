@@ -3,15 +3,73 @@
 <head>
 <style>
 
-    .tier, .dragDiv {
+    body{
+        background: #444;
+    }
+
+    button{
+        min-width: 100px;
+        min-height: 40px;
+        border-radius: 5px;
+    }
+
+    h2.title {
+        color: white;
+        text-align: center;
+    }
+
+    .tier-wrap{
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        border: 1px solid #000;
+    }
+
+    .tier-wrap.tier1 span{
+        background-color: rgba(255, 215, 0, .9);
+    }
+    .tier-wrap.tier2 span{
+        background-color: rgba(160, 223, 22, .8);
+    }
+    .tier-wrap.tier3 span{
+        background-color:  rgba(92, 223, 23, .8);
+    }
+    .tier-wrap.tier4 span{
+        background-color: rgba(22, 222, 149, .8);
+    }
+    .tier-wrap.tier5 span{
+        background-color:  rgba(18, 225, 219, .8);
+    }
+
+    .tier-wrap span {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 105px !important;
+        width: 65px;
+        text-align: center;
+        user-select: none;
+    }
+
+    .dragDiv {
         /* margin: 10px 5px; */
         padding: 0px 5px;
         border: 1px solid black;
         min-width: 50px;
     }
+    
+    .tier{
+        /* border: 1px solid black; */
+        background: #333;
+        padding: 0;
+        flex: 1;
+        padding-left: 10px;
+    }
+
     .dragDiv {
         /* width: 100px; */
         height: 100px;
+        border: none;
     }
 
     .dragDiv > img {
@@ -23,7 +81,14 @@
     .tier,
     .cards-pond{
         display: flex;
+        align-items: center;
         min-height: 104px;
+    }
+
+    .dragger-btn{
+        height: 105px;
+        width: 50px;
+        background-color: rgb(255, 184, 176);
     }
 
     button {
@@ -35,31 +100,19 @@
 <body>
 
 <div class="title-wrap">
-    <h2 class="">MK Tier list</h2>
+    <h2 class="title">MK Tier list</h2>
     <button id="copyButton">Copy URL</button>
     <button id="resetButton">Reset</button>
 </div>
 
-<div id="tier1" class="tier" ondrop="drop(event)" ondragover="allowDrop(event)">Godlike</div>
-<div id="tier2" class="tier" ondrop="drop(event)" ondragover="allowDrop(event)">Great</div>
-<div id="tier3" class="tier" ondrop="drop(event)" ondragover="allowDrop(event)">Very Good</div>
-<div id="tier4" class="tier" ondrop="drop(event)" ondragover="allowDrop(event)">Good</div>
-<div id="tier5" class="tier" ondrop="drop(event)" ondragover="allowDrop(event)">Decent / Serviceable</div>
+<div class="tier-wrap tier1"><span>Godlike</span><div id="tier1" class="tier" ondrop="drop(event)" ondragover="allowDrop(event)"></div><div class="dragger-btn"></div></div>
+<div class="tier-wrap tier2"><span>Great</span><div id="tier2" class="tier" ondrop="drop(event)" ondragover="allowDrop(event)"></div><div class="dragger-btn"></div></div>
+<div class="tier-wrap tier3"><span>Very Good</span><div id="tier3" class="tier" ondrop="drop(event)" ondragover="allowDrop(event)"></div><div class="dragger-btn"></div></div>
+<div class="tier-wrap tier4"><span>Good</span><div id="tier4" class="tier" ondrop="drop(event)" ondragover="allowDrop(event)"></div><div class="dragger-btn"></div></div>
+<div class="tier-wrap tier5"><span>Decent</span><div id="tier5" class="tier" ondrop="drop(event)" ondragover="allowDrop(event)"></div><div class="dragger-btn"></div></div>
 
 <div class="cards-pond">
-    <!-- <div id="drag1" class="dragDiv" draggable="true" ondragstart="drag(event)" style="background-color:red;"></div>
-    <div id="drag2" class="dragDiv" draggable="true" ondragstart="drag(event)" style="background-color:blue;"></div>
-    <div id="drag3" class="dragDiv" draggable="true" ondragstart="drag(event)" style="background-color:green;"></div>
-    <div id="drag4" class="dragDiv" draggable="true" ondragstart="drag(event)" style="background-color:yellow;"></div>
-    <div id="drag5" class="dragDiv" draggable="true" ondragstart="drag(event)" style="background-color:cyan;"></div>
-    <div id="drag6" class="dragDiv" draggable="true" ondragstart="drag(event)" style="background-color:violet;"></div>
-    <div id="drag7" class="dragDiv" draggable="true" ondragstart="drag(event)" style="background-color:orange;"></div>
-    <div id="drag8" class="dragDiv" draggable="true" ondragstart="drag(event)" style="background-color:salmon;"></div>
-    <div id="drag9" class="dragDiv" draggable="true" ondragstart="drag(event)" style="background-color:gray;"></div>
-    <div id="drag10" class="dragDiv" draggable="true" ondragstart="drag(event)" style="background-color:indigo;"></div> -->
 </div>
-
-
 
 <script src="jquery-3.6.4.min.js"></script>
 <script src="script.js"></script>

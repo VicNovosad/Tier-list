@@ -1,15 +1,15 @@
 [
     {
         "Diamond Character card": {
-            "johnny cage ninja mime": "/assets/johnny_cage_ninja_mime.jpg",
-            "link kuei": "/assets/link_kuei.jpg",
-            "monk": "/assets/monk.jpg",
-            "oni": "/assets/oni.jpg",
+            "johnny cage ninja mime": "/assets/johnny_cage_ninja_mime.png",
+            "link kuei": "/assets/link_kuei.png",
+            "monk": "/assets/monk.png",
+            "oni": "/assets/oni.png",
             "osh tekk": "/assets/osh_tekk.png",
-            "saurian": "/assets/saurian.jpg",
-            "sergeant": "/assets/sergeant.jpg",
-            "shirai ryu": "/assets/shirai_ryu.jpg",
-            "trooper": "/assets/trooper.jpg"
+            "saurian": "/assets/saurian.png",
+            "sergeant": "/assets/sergeant.png",
+            "shirai ryu": "/assets/shirai_ryu.png",
+            "trooper": "/assets/trooper.png"
         }
     }
 ]
