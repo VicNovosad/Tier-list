@@ -7,12 +7,6 @@ function drag(ev) {
     ev.dataTransfer.setData("class", ev.target.className);
 }
 
-// function drag(ev) {
-//     ev.originalEvent.dataTransfer.setData("text", ev.target.id);
-//     ev.originalEvent.dataTransfer.setData("class", ev.target.className);
-// }
-
-
 function drop(ev) {
     ev.preventDefault();
     var data = ev.dataTransfer.getData("text");
@@ -52,23 +46,6 @@ Array.from(tiers).forEach(tier => {
     tier.addEventListener("dragstart", drag);
 });
 
-// function drop(ev) {
-//     ev.preventDefault();
-//     if (ev.target.classList.contains("dragDiv") || ev.target.classList.contains("tier")) {
-//         var data = ev.dataTransfer.getData("text");
-//         var draggedItem = document.getElementById(data);
-//         if (ev.target.classList.contains("dragDiv")) {
-//             // Insert draggedItem before the item currently under the cursor
-//             ev.target.parentNode.insertBefore(draggedItem, ev.target);
-//         } else {
-//             // Append draggedItem to the end of the tier
-//             ev.target.appendChild(draggedItem);
-//         }
-//         updateURLAndLocalStorage();
-//     }
-// }
-
-
 function updateURLAndLocalStorage() {
     var tiers = document.getElementsByClassName('tier');
     var searchParams = new URLSearchParams();
@@ -86,7 +63,7 @@ function loadFromLocalStorage() {
         var items = (localStorage.getItem(tier.id) || '').split(',');
         items.forEach(id => {
             var item = document.getElementById(id);
-            if (item) { // Check if the element exists
+            if (item) { 
                 tier.appendChild(item);
             }
         });
@@ -120,16 +97,10 @@ document.getElementById('copyButton').addEventListener('click', function() {
 });
 
 function toCamelCase(str) {
-    return str.replace(/\s+/g, ' ') // Replace multiple spaces with single space
-              .split(' ') // Split string into array by space
-              .map((word, index) => index === 0 ? word.toLowerCase() : word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()) // Convert to camelCase
-              .join(''); // Join array into string without space
+    return str.replace(/\s+/g, ' ').split(' ')
+              .map((word, index) => index === 0 ? word.toLowerCase() : word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+              .join('');
 }
-
-
-// window.addEventListener('load', function() {
-//     loadFromLocalStorage();
-// });
 
 window.addEventListener('load', function() {
     var cardsData;
@@ -167,33 +138,10 @@ window.addEventListener('load', function() {
     }
 
     document.getElementById('resetButton').addEventListener('click', function() {
-        // Clear local storage
         localStorage.clear();
-    
         // Reload the page
         location.reload();
     });
-    
-
-    // document.getElementById('resetButton').addEventListener('click', function() {
-    //     // Clear local storage
-    //     localStorage.clear();
-        
-    //     // Reset the positions of the elements
-    //     var tiers = document.getElementsByClassName('tier');
-    //     Array.from(tiers).forEach(tier => {
-    //         while (tier.firstChild) {
-    //             tier.removeChild(tier.firstChild);
-    //         }
-    //     });
-    
-    //     var cardContainer = document.querySelector('.cards-pond');
-    //     var dragDivs = document.querySelectorAll('.dragDiv');
-    //     Array.from(dragDivs).forEach(dragDiv => {
-    //         cardContainer.appendChild(dragDiv);
-    //     });
-    // });
-    
 });
 
 
