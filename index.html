@@ -2,13 +2,23 @@
 <html>
 <head>
 <style>
+    @font-face {
+        font-family: mkx title;
+        font-style: normal;
+        font-weight: 400;
+        src: local('MKX Title'),url(fonts/mkxtitle.woff) format('woff')
+    }
+
 
     body{
-        background: #444;
+        background: #222;
     }
 
     button {
-    background-image: linear-gradient(#ededed, #dddddd);
+        background-image: linear-gradient(#eeeeee, #9d9d9d);
+        border-color: #1482D0;
+        text-decoration: none;
+    
     border: 1px solid #d5d5d5;
     border-radius: 4px;
     box-sizing: border-box;
@@ -38,9 +48,10 @@
     }
 
     button:hover {
-    background-image: linear-gradient(#eeeeee, #9d9d9d);
-    border-color: #1482D0;
-    text-decoration: none;
+        /* background-image: linear-gradient(#eeeeee, #9d9d9d); */
+        background-image: linear-gradient(#ededed, #dddddd);
+        border-color: #1482D0;
+        text-decoration: none;
     }
 
     button:active {
@@ -50,7 +61,7 @@
     }
 
     button:focus {
-    box-shadow: rgba(255, 255, 255, 0.5) 0 0 0 3px;
+    box-shadow: rgba(255, 255, 255, 0.5) 0 0 0 1px;
     outline: none;
     }
 
@@ -61,11 +72,28 @@
         font-size: 1rem;
     } */
 
+    body{
+        display: flex;
+        /* align-items: center; */
+        justify-content: center;
+        /* flex-direction: column; */
+        /* height: 100vh; */
+        min-width: 100vw;
+    }
+
+    .container {
+        max-width: 1280px;
+        width: 100%;
+        flex: 1;
+    }
+    
     h2.title {
-        color: white;
+        color: #786e63;
         text-align: center;
-        font-size: 2rem;
-        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        font-size: 2.5rem;
+        font-weight: 400;
+        font-family: mkx title;
+        /* font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; */
     }
 
     .tier-wrap{
@@ -73,6 +101,12 @@
         flex-direction: row;
         width: 100%;
         border: 1px solid #000;
+        border: 1px solid #525244;
+        border-bottom: none;
+        /* background: linear-gradient(0deg,#20201b 0%,#525244 3%,#525244 97%,#20201b 100%); */
+    }
+    .tier-wrap:last-of-type{
+        border-bottom: 1px solid #525244;
     }
 
     .tier-wrap.tier1 .tier-title{
@@ -141,6 +175,10 @@
         min-height: 104px;
     }
 
+    .cards-pond{
+        margin-top: 10px;
+    }
+
     .dragger-btn{
         display: none;
         height: 100%;
@@ -155,49 +193,56 @@
     .btn-wrap {
         display: flex;
         margin-bottom: 10px;
+        justify-content: space-between;
     }
 
 </style>
 </head>
 <body>
+    <div class="container">
 
-<div class="title-wrap">
-    <h2 class="title">MK Tier list maker</h2>
-</div>
-<div class="btn-wrap">
-    <button id="copyButton">Copy URL</button>
-    <button id="resetButton">Reset</button>
-</div>
+        <div class="title-wrap">
+            <h2 class="title">MK Mobile tier list maker</h2>
+        </div>
+        <div class="btn-wrap">
+            <button id="copyButton">Copy URL</button>
+            <button id="resetButton">Reset</button>
+        </div>
 
-<div class="tier-list-container">
-    <div class="tier-wrap tier1">
-        <div class="tier-title"><span>Godlike</span></div>
-        <div id="tier1" class="tier" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-        <div class="dragger-btn"></div>
-    </div>
-    <div class="tier-wrap tier2"><div class="tier-title"><span>Great</span></div>
-        <div id="tier2" class="tier" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-        <div class="dragger-btn"></div>
-    </div>
-    <div class="tier-wrap tier3"><div class="tier-title"><span>Very Good</span></div>
-        <div id="tier3" class="tier" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-        <div class="dragger-btn"></div>
-    </div>
-    <div class="tier-wrap tier4"><div class="tier-title"><span>Good</span></div>
-        <div id="tier4" class="tier" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-        <div class="dragger-btn"></div>
-    </div>
-    <div class="tier-wrap tier5"><div class="tier-title"><span>Decent</span></div>
-        <div id="tier5" class="tier" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-        <div class="dragger-btn"></div>
-    </div>
-</div>
+        <div class="tier-list-container">
+            <div class="tier-wrap tier1">
+                <div class="tier-title"><span>Godlike</span></div>
+                <div id="tier1" class="tier" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                <div class="dragger-btn"></div>
+            </div>
+            <div class="tier-wrap tier2">
+                <div class="tier-title"><span>Great</span></div>
+                <div id="tier2" class="tier" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                <div class="dragger-btn"></div>
+            </div>
+            <div class="tier-wrap tier3">
+                <div class="tier-title"><span>Very Good</span></div>
+                <div id="tier3" class="tier" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                <div class="dragger-btn"></div>
+            </div>
+            <div class="tier-wrap tier4">
+                <div class="tier-title"><span>Good</span></div>
+                <div id="tier4" class="tier" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                <div class="dragger-btn"></div>
+            </div>
+            <div class="tier-wrap tier5">
+                <div class="tier-title"><span>Decent</span></div>
+                <div id="tier5" class="tier" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                <div class="dragger-btn"></div>
+            </div>
+        </div>
 
-<div class="cards-pond">
-</div>
+        <div class="cards-pond">
+        </div>
+    </div>
 
-<script src="jquery-3.6.4.min.js"></script>
-<script src="script.js"></script>
+    <script src="jquery-3.6.4.min.js"></script>
+    <script src="script.js"></script>
 
 
 </body>
