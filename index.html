@@ -25,7 +25,7 @@
     overflow: visible;
     padding: 4px 15px;
     text-align: center;
-    vertical-align: baseline;
+    /* vertical-align: baseline; */
     user-select: none;
     -webkit-user-select: none;
     touch-action: manipulation;
@@ -75,27 +75,27 @@
         border: 1px solid #000;
     }
 
-    .tier-wrap.tier1 span{
-        background-color: rgba(255, 215, 0, .9);
+    .tier-wrap.tier1 .tier-title{
+        background-color: rgba(255, 215, 0, .7);
     }
-    .tier-wrap.tier2 span{
-        background-color: rgba(160, 223, 22, .8);
+    .tier-wrap.tier2 .tier-title{
+        background-color: rgba(160, 223, 22, .55);
     }
-    .tier-wrap.tier3 span{
-        background-color:  rgba(92, 223, 23, .8);
+    .tier-wrap.tier3 .tier-title{
+        background-color:  rgba(92, 223, 23, .55);
     }
-    .tier-wrap.tier4 span{
-        background-color: rgba(22, 222, 149, .8);
+    .tier-wrap.tier4 .tier-title{
+        background-color: rgba(22, 222, 149, .55);
     }
-    .tier-wrap.tier5 span{
-        background-color:  rgba(18, 225, 219, .8);
+    .tier-wrap.tier5 .tier-title{
+        background-color:  rgba(18, 225, 219, .55);
     }
 
-    .tier-wrap span {
+    .tier-wrap .tier-title {
         display: flex;
         align-items: center;
         justify-content: center;
-        height: 105px !important;
+        /* height: 100% !important; */
         width: 65px;
         text-align: center;
         user-select: none;
@@ -103,7 +103,7 @@
 
     .dragDiv {
         /* margin: 10px 5px; */
-        padding: 0px 5px;
+        padding: 0px 2px;
         border: 1px solid black;
         min-width: 50px;
     }
@@ -113,7 +113,8 @@
         background: #333;
         padding: 0;
         flex: 1;
-        padding-left: 10px;
+        flex-wrap: wrap;
+        padding-left: 5px;
     }
 
     .dragDiv {
@@ -136,7 +137,8 @@
     }
 
     .dragger-btn{
-        height: 105px;
+        display: none;
+        height: 100%;
         width: 50px;
         background-color: rgb(91, 91, 91);
     }
@@ -163,23 +165,24 @@
 </div>
 
 <div class="tier-list-container">
-    <div class="tier-wrap tier1"><span>Godlike</span>
+    <div class="tier-wrap tier1">
+        <div class="tier-title"><span>Godlike</span></div>
         <div id="tier1" class="tier" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
         <div class="dragger-btn"></div>
     </div>
-    <div class="tier-wrap tier2"><span>Great</span>
+    <div class="tier-wrap tier2"><div class="tier-title"><span>Great</span></div>
         <div id="tier2" class="tier" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
         <div class="dragger-btn"></div>
     </div>
-    <div class="tier-wrap tier3"><span>Very Good</span>
+    <div class="tier-wrap tier3"><div class="tier-title"><span>Very Good</span></div>
         <div id="tier3" class="tier" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
         <div class="dragger-btn"></div>
     </div>
-    <div class="tier-wrap tier4"><span>Good</span>
+    <div class="tier-wrap tier4"><div class="tier-title"><span>Good</span></div>
         <div id="tier4" class="tier" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
         <div class="dragger-btn"></div>
     </div>
-    <div class="tier-wrap tier5"><span>Decent</span>
+    <div class="tier-wrap tier5"><div class="tier-title"><span>Decent</span></div>
         <div id="tier5" class="tier" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
         <div class="dragger-btn"></div>
     </div>
