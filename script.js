@@ -130,7 +130,6 @@ class LocalStorageHandler {
         localStorage.clear();
     }
 }
-
 class UIHandler {
     constructor(dragDrop, localStorageHandler) {
         this.dragDrop = dragDrop;
