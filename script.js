@@ -70,32 +70,6 @@ function loadFromLocalStorage() {
     });
 }
 
-document.getElementById('copyButton').addEventListener('click', function() {
-    var url = new URL(window.location.href);
-    var searchParams = new URLSearchParams();
-    var tiers = document.getElementsByClassName('tier');
-    Array.from(tiers).forEach(tier => {
-        searchParams.set(tier.id, localStorage.getItem(tier.id));
-    });
-    url.search = searchParams.toString();
-    
-    if (navigator.clipboard) {
-        navigator.clipboard.writeText(url.href);
-    } else {
-        var textarea = document.createElement('textarea');
-        textarea.textContent = url.href;
-        document.body.appendChild(textarea);
-        textarea.select();
-        try {
-            document.execCommand('copy');
-        } catch (ex) {
-            console.error('Failed to copy URL', ex);
-        } finally {
-            document.body.removeChild(textarea);
-        }
-    }
-});
-
 function toCamelCase(str) {
     return str.replace(/\s+/g, ' ').split(' ')
               .map((word, index) => index === 0 ? word.toLowerCase() : word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
@@ -120,35 +94,76 @@ function loadData(cardRanking) {
     if (cardsData) {
         var cards = cardsData[0][cardRanking];
         var cardContainer = document.querySelector('.cards-pond');
-        for (var cardName in cards) {
-            var cardImgPath = cards[cardName];
+        for (const cardName in cards) {
+            const cardImgPath = cards[cardName];
 
-            var cardDiv = document.createElement('div');
+            const cardDiv = document.createElement('div');
             cardDiv.id = toCamelCase(cardName);
             cardDiv.className = 'dragDiv';
             cardDiv.draggable = true;
             cardDiv.addEventListener('dragstart', drag);
 
-            var cardImg = document.createElement('img');
+            const cardImg = document.createElement('img');
             cardImg.src = cardImgPath;
+            
+            let cardTitle = document.createElement('h5');
+            cardTitle.innerText = cardName;
+
+            // console.log(cardTitle)
 
             cardDiv.appendChild(cardImg);
+            cardDiv.appendChild(cardTitle);
             cardContainer.appendChild(cardDiv);
         }
         loadFromLocalStorage();
     }
 }
 
+function clearAndLoad(cardRanking) {
+    $('.cards-pond').empty();
+    $('.tier-list-container .tier').empty();
+    loadData(cardRanking);
+}
+
+function copyURLListener() {
+    document.getElementById('copyButton').addEventListener('click', function() {
+        var url = new URL(window.location.href);
+        var searchParams = new URLSearchParams();
+        var tiers = document.getElementsByClassName('tier');
+        Array.from(tiers).forEach(tier => {
+            searchParams.set(tier.id, localStorage.getItem(tier.id));
+        });
+        url.search = searchParams.toString();
+        
+        if (navigator.clipboard) {
+            navigator.clipboard.writeText(url.href);
+        } else {
+            var textarea = document.createElement('textarea');
+            textarea.textContent = url.href;
+            document.body.appendChild(textarea);
+            textarea.select();
+            try {
+                document.execCommand('copy');
+            } catch (ex) {
+                console.error('Failed to copy URL', ex);
+            } finally {
+                document.body.removeChild(textarea);
+            }
+        }
+    });
+}
+
 window.addEventListener('load', function() {
     
     loadData("Bronze Character cards");
+
+    copyURLListener();
 
     document.getElementById('resetButton').addEventListener('click', function() {
         localStorage.clear();
         $('.cards-pond').empty();
         $('.tier-list-container .tier').empty();
         $('.tab.active').trigger('click')
-        // Reload the page
         // location.reload();
     });
 
@@ -158,22 +173,13 @@ window.addEventListener('load', function() {
         
         switch($(this).text()) {
             case "Bronze":
-                // localStorage.clear();
-                $('.cards-pond').empty();
-                $('.tier-list-container .tier').empty();
-                loadData("Bronze Character cards");
+                clearAndLoad("Bronze Character cards")
                 break;
             case "Silver":
-                $('.cards-pond').empty();
-                $('.tier-list-container .tier').empty();
-                // localStorage.clear();
-                loadData("Silver Character cards");
+                clearAndLoad("Silver Character cards")
                 break;
             default:
-                $('.cards-pond').empty();
-                $('.tier-list-container .tier').empty();
-                // localStorage.clear();
-                loadData("Bronze Character cards");
+                clearAndLoad("Bronze Character cards")
           }
     });
 
