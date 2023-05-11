@@ -53,7 +53,7 @@ class DragDrop {
         var cardsData;
         
         $.ajax({
-            url: '/cards-data.json',
+            url: '/character-cards-data.json',
             dataType: 'json',
             async: false,
             success: function(data) {
@@ -100,19 +100,25 @@ class DragDrop {
 }
 
 class LocalStorageHandler {
-    constructor() {}
+    constructor() {
+        // Initialize urlParams when the object is created
+        this.urlParams = new URLSearchParams(window.location.search);
+    }
 
     updateURLAndLocalStorage() {
         var tiers = document.getElementsByClassName('tier');
         var searchParams = new URLSearchParams();
+        var activeTab = $('.tab.active').text();
+        searchParams.set('activeTab', activeTab);
         Array.from(tiers).forEach(tier => {
             var items = Array.from(tier.children).map(x => x.id).join(',');
             searchParams.set(tier.id, items);
             localStorage.setItem(tier.id, items);
         });
+        localStorage.setItem('activeTab', activeTab);
         window.history.replaceState(null, null, "?" + searchParams.toString());
     }
-
+    
     loadFromLocalStorage() {
         var tiers = document.getElementsByClassName('tier');
         Array.from(tiers).forEach(tier => {
@@ -124,10 +130,22 @@ class LocalStorageHandler {
                 }
             });
         });
+        let activeTab = localStorage.getItem('activeTab');
+        if(activeTab) {
+            $('.tab-container .tab').removeClass('active');
+            $(`.tab-container .tab:contains(${activeTab})`).addClass('active');
+        }
     }
 
     clearLocalStorage() {
         localStorage.clear();
+    }
+
+    clearURL(activeTab) {
+        // Set the 'tab' parameter to the name of the active tab
+        this.urlParams.set('tab', activeTab);
+        // Replace the current history state with a state that includes the 'tab' parameter
+        window.history.replaceState({}, document.title, window.location.pathname + '?' + this.urlParams.toString());
     }
 }
 class UIHandler {
@@ -139,15 +157,32 @@ class UIHandler {
 
     init() {
         window.addEventListener('load', () => {
-            this.dragDrop.loadData("Bronze Character cards");
+            // Check if URL has parameters
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.toString()) {
+                // Clear local storage
+                this.localStorageHandler.clearLocalStorage();
+    
+                // Update local storage with URL parameters
+                for (const [key, value] of urlParams.entries()) {
+                    localStorage.setItem(key, value);
+                }
+            }
+    
+            this.localStorageHandler.loadFromLocalStorage();
+    
+            let activeTab = $('.tab.active').text();
+            this.dragDrop.loadData(`${activeTab} Character cards`);
+            
             this.setupCopyURL();
             this.setupResetButton();
             this.setupTabClick();
-
+    
             // Add event listeners to tiers
             this.setupTierEvents();
         });
     }
+    
 
     setupTierEvents() {
         const tiers = document.getElementsByClassName('tier');
