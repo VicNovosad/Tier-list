@@ -1,15 +1,31 @@
 [
     {
-        "Diamond Character card": {
-            "johnny cage ninja mime": "/assets/johnny_cage_ninja_mime.png",
-            "link kuei": "/assets/link_kuei.png",
-            "monk": "/assets/monk.png",
-            "oni": "/assets/oni.png",
-            "osh tekk": "/assets/osh_tekk.png",
-            "saurian": "/assets/saurian.png",
-            "sergeant": "/assets/sergeant.png",
-            "shirai ryu": "/assets/shirai_ryu.png",
-            "trooper": "/assets/trooper.png"
+        "Bronze Character cards": {
+            "johnny cage ninja mime": "/assets/bronze/tn_johnnycage_m0.png",
+            "link kuei": "/assets/bronze/tn_linkuei_a0.png",
+            "monk": "/assets/bronze/tn_monk_a0.png",
+            "oni": "/assets/bronze/tn_oni_a0.png",
+            "osh tekk": "/assets/bronze/tn_oshtekk_a0.png",
+            "saurian": "/assets/bronze/tn_saurian_a0.png",
+            "sergeant": "/assets/bronze/tn_sergant_m0.png",
+            "shirai ryu": "/assets/bronze/tn_shirairyu_a0.png",
+            "trooper": "/assets/bronze/tn_trooper_f0.png"
+        },
+        "Silver Character cards": {
+            "cassie cage": "/assets/silver/tn_cassiecage_b0.png",
+            "kenshi": "/assets/silver/tn_kenshi_b0.png",
+            "D'vorah": "/assets/silver/tn_dvorah_b0.png",
+            "Ermac": "/assets/silver/tn_ermac_a0.png",
+            "Jacque Briggs": "/assets/silver/tn_jacquibriggs_b0.png",
+            "Jax Briggs": "/assets/silver/tn_jaxbriggs_b0.png",
+            "Jax Briggs 2": "/assets/silver/tn_jaxbriggs_m0.png",
+            "Johnny Cage": "/assets/silver/tn_johnnycage_a0.png",
+            "Kano": "/assets/silver/tn_kano_b0.png",
+            "Kitana": "/assets/silver/tn_kitana_m0.png",
+            "Kungjin": "/assets/silver/tn_kungjin_b0.png",
+            "Scorpion": "/assets/silver/tn_scorpion_b0.png",
+            "Sonya Blade": "/assets/silver/tn_sonyablade_c0.png",
+            "Sub Zero": "/assets/silver/tn_subzero_a0.png"
         }
     }
 ]

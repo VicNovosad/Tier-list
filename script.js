@@ -102,8 +102,9 @@ function toCamelCase(str) {
               .join('');
 }
 
-window.addEventListener('load', function() {
+function loadData(cardRanking) {
     var cardsData;
+    
     $.ajax({
         url: '/cards-data.json',
         dataType: 'json',
@@ -117,7 +118,7 @@ window.addEventListener('load', function() {
     });
 
     if (cardsData) {
-        var cards = cardsData[0]["Diamond Character card"];
+        var cards = cardsData[0][cardRanking];
         var cardContainer = document.querySelector('.cards-pond');
         for (var cardName in cards) {
             var cardImgPath = cards[cardName];
@@ -136,12 +137,46 @@ window.addEventListener('load', function() {
         }
         loadFromLocalStorage();
     }
+}
+
+window.addEventListener('load', function() {
+    
+    loadData("Bronze Character cards");
 
     document.getElementById('resetButton').addEventListener('click', function() {
         localStorage.clear();
+        $('.cards-pond').empty();
+        $('.tier-list-container .tier').empty();
+        $('.tab.active').trigger('click')
         // Reload the page
-        location.reload();
+        // location.reload();
     });
+
+    $('.tab-container .tab').click(function() {
+        $('.tab-container .tab').removeClass('active');
+        $(this).addClass('active');
+        
+        switch($(this).text()) {
+            case "Bronze":
+                // localStorage.clear();
+                $('.cards-pond').empty();
+                $('.tier-list-container .tier').empty();
+                loadData("Bronze Character cards");
+                break;
+            case "Silver":
+                $('.cards-pond').empty();
+                $('.tier-list-container .tier').empty();
+                // localStorage.clear();
+                loadData("Silver Character cards");
+                break;
+            default:
+                $('.cards-pond').empty();
+                $('.tier-list-container .tier').empty();
+                // localStorage.clear();
+                loadData("Bronze Character cards");
+          }
+    });
+
 });
 
 
