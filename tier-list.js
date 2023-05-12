@@ -1,47 +1,47 @@
 class DragDrop {
     constructor() {}
 
-    allowDrop(ev) {
-        ev.preventDefault();
-    }
+    // allowDrop(ev) {
+    //     ev.preventDefault();
+    // }
 
-    drag(ev) {
-        ev.dataTransfer.setData("text", ev.target.id);
-        ev.dataTransfer.setData("class", ev.target.className);
-    }
+    // drag(ev) {
+    //     ev.dataTransfer.setData("text", ev.target.id);
+    //     ev.dataTransfer.setData("class", ev.target.className);
+    // }
 
-    drop(ev) {
-        ev.preventDefault();
-        var data = ev.dataTransfer.getData("text");
-        var classData = ev.dataTransfer.getData("class");
-        var draggedItem = document.getElementById(data);
-        if (classData.includes("dragDiv")) {
-            if (ev.target.classList.contains("dragDiv")) {
-                if (ev.offsetX > ev.target.offsetWidth / 2) {
-                    if (ev.target.nextSibling) {
-                        ev.target.parentNode.insertBefore(draggedItem, ev.target.nextSibling);
-                    } else {
-                        ev.target.parentNode.appendChild(draggedItem);
-                    }
-                } else {
-                    ev.target.parentNode.insertBefore(draggedItem, ev.target);
-                }
-            } else if (ev.target.classList.contains("tier")) {
-                ev.target.appendChild(draggedItem);
-            }
-        } else if (classData.includes("tier")) {
-            if (ev.target.classList.contains("tier")) {
-                // Swap positions of the dragged and target tiers
-                ev.target.parentNode.insertBefore(draggedItem, ev.target);
-                if (draggedItem.nextSibling) {
-                    ev.target.parentNode.insertBefore(ev.target, draggedItem.nextSibling);
-                } else {
-                    ev.target.parentNode.appendChild(ev.target);
-                }
-            }
-        }
-        localStorageHandler.updateURLAndLocalStorage();
-    }
+    // drop(ev) {
+    //     ev.preventDefault();
+    //     var data = ev.dataTransfer.getData("text");
+    //     var classData = ev.dataTransfer.getData("class");
+    //     var draggedItem = document.getElementById(data);
+    //     if (classData.includes("dragDiv")) {
+    //         if (ev.target.classList.contains("dragDiv")) {
+    //             if (ev.offsetX > ev.target.offsetWidth / 2) {
+    //                 if (ev.target.nextSibling) {
+    //                     ev.target.parentNode.insertBefore(draggedItem, ev.target.nextSibling);
+    //                 } else {
+    //                     ev.target.parentNode.appendChild(draggedItem);
+    //                 }
+    //             } else {
+    //                 ev.target.parentNode.insertBefore(draggedItem, ev.target);
+    //             }
+    //         } else if (ev.target.classList.contains("tier")) {
+    //             ev.target.appendChild(draggedItem);
+    //         }
+    //     } else if (classData.includes("tier")) {
+    //         if (ev.target.classList.contains("tier")) {
+    //             // Swap positions of the dragged and target tiers
+    //             ev.target.parentNode.insertBefore(draggedItem, ev.target);
+    //             if (draggedItem.nextSibling) {
+    //                 ev.target.parentNode.insertBefore(ev.target, draggedItem.nextSibling);
+    //             } else {
+    //                 ev.target.parentNode.appendChild(ev.target);
+    //             }
+    //         }
+    //     }
+    //     localStorageHandler.updateURLAndLocalStorage();
+    // }
 
     toCamelCase(str) {
         return str.replace(/\s+/g, ' ').split(' ')
@@ -88,7 +88,7 @@ class DragDrop {
                 cardDiv.appendChild(cardTitle);
                 cardContainer.appendChild(cardDiv);
             }
-            localStorageHandler.loadFromLocalStorage();
+            // localStorageHandler.loadFromLocalStorage();
         }
     }
 
@@ -149,37 +149,53 @@ class LocalStorageHandler {
     }
 }
 class UIHandler {
-    constructor(dragDrop, localStorageHandler) {
+    // constructor(dragDrop, localStorageHandler) {
+    constructor() {
         this.dragDrop = dragDrop;
-        this.localStorageHandler = localStorageHandler;
+        // this.localStorageHandler = localStorageHandler;
         this.init();
     }
 
     init() {
         window.addEventListener('load', () => {
-            // Check if URL has parameters
-            const urlParams = new URLSearchParams(window.location.search);
-            if (urlParams.toString()) {
-                // Clear local storage
-                this.localStorageHandler.clearLocalStorage();
-    
-                // Update local storage with URL parameters
-                for (const [key, value] of urlParams.entries()) {
-                    localStorage.setItem(key, value);
+
+            var containers = Array.from(document.querySelectorAll('.tier, .cards-pond'));
+            let tiers = dragula(containers, {
+                // direction: 'vertical',
+                revertOnSpill: false
+            });
+
+            dragula([document.getElementById('tier-list-container')], {
+                moves: function (el, container, handle) {
+                  return handle.classList.contains('handle');
                 }
-            }
+            });
+
+            console.log(tiers.containers)
+
+            // // Check if URL has parameters
+            // const urlParams = new URLSearchParams(window.location.search);
+            // if (urlParams.toString()) {
+            //     // Clear local storage
+            //     this.localStorageHandler.clearLocalStorage();
     
-            this.localStorageHandler.loadFromLocalStorage();
+            //     // Update local storage with URL parameters
+            //     for (const [key, value] of urlParams.entries()) {
+            //         localStorage.setItem(key, value);
+            //     }
+            // }
+    
+            // this.localStorageHandler.loadFromLocalStorage();
     
             let activeTab = $('.tab.active').text();
             this.dragDrop.loadData(`${activeTab} Character cards`);
             
-            this.setupCopyURL();
-            this.setupResetButton();
-            this.setupTabClick();
+            // this.setupCopyURL();
+            // this.setupResetButton();
+            // this.setupTabClick();
     
             // Add event listeners to tiers
-            this.setupTierEvents();
+            // this.setupTierEvents();
         });
     }
     
@@ -249,8 +265,21 @@ class UIHandler {
 }
 
 // Initialize the drag and drop functionality, local storage, and UI handler.
+// const dragDrop = new DragDrop();
 const dragDrop = new DragDrop();
-const localStorageHandler = new LocalStorageHandler();
-const uiHandler = new UIHandler(dragDrop, localStorageHandler);
+// const localStorageHandler = new LocalStorageHandler();
+
+
+// const uiHandler = new UIHandler(dragDrop, localStorageHandler);
+const uiHandler = new UIHandler();
+
+// function init() {
+    
+// }
+
+// window.onload = function() {
+//     // Your code here
+//           init();
+// };
 
 

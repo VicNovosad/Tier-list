@@ -1,0 +1,90 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <style>
+        .tier {
+            margin: 15px;
+            padding: 10px;
+            border: 1px solid black;
+        }
+
+        .dragDiv {
+            width: 50px;
+            height: 50px;
+            margin: 10px;
+            /* border: 1px solid red; */
+        }
+
+        #card-pond,
+        .tier {
+            display: flex;
+            flex-direction: row;
+            justify-content: start;
+            min-height: 20px;
+            height: 100%;
+        }
+    </style>
+
+    <!-- Dragula library -->
+    <script src='dragula.min.js'></script>
+
+</head>
+
+<body>
+
+    <h2>Drag the colored squares into the corresponding boxes</h2>
+
+    <div id="tier1" class="tier">5</div>
+    <div id="tier2" class="tier">4</div>
+    <div id="tier3" class="tier">3</div>
+    <div id="tier4" class="tier">2</div>
+    <div id="tier5" class="tier">1</div>
+
+    <div id="card-pond" class="tier">
+        <div id="drag1" class="dragDiv" style="background: red"></div>
+        <div id="drag2" class="dragDiv" style="background: green"></div>
+        <div id="drag3" class="dragDiv" style="background: blue"></div>
+        <div id="drag4" class="dragDiv" style="background: violet"></div>
+        <div id="drag5" class="dragDiv" style="background: orange"></div>
+    </div>
+
+    <script>
+        // Select all containers
+
+        window.onload = function() {
+        // Your code here
+              init();
+        };
+
+        function init() {
+            var containers = Array.from(document.querySelectorAll('.tier, #card-pond'));
+            let tiers = dragula(containers, {
+                // direction: 'vertical',
+                revertOnSpill: false
+            });
+            console.log(tiers.containers)
+        }
+        
+        // const tierElements = document.querySelectorAll('.dragDiv');
+        // tierElements.forEach((element) => {
+        //     tiers.containers.push(element);
+        // });
+
+    // dragula([document.getElementById(cardPond), document.getElementById(tier1)], {
+    //     revertOnSpill: true
+    // });
+    // var drake = dragula(containers, {
+    //     moves: function (el, source, handle, sibling) {
+    //         return el.classList.contains('dragDiv'); // elements are always draggable by default
+    //     },
+    //     accepts: function (el, target, source, sibling) {
+    //         return target.classList.contains('tier') || target.classList.contains('card-pond');
+    //     },
+    //     direction: 'horizontal' // horizontal dragging
+    // });
+    </script>
+
+</body>
+
+</html>

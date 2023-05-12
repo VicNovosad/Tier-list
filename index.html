@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
     <link rel="stylesheet" href="tier-list.css">
+    <link rel="stylesheet" href="dragula.css">
     <title>Document</title>
 </head>
 
@@ -27,41 +28,41 @@
             <button id="resetButton">Reset</button>
         </div>
 
-        <div class="tier-list-container">
+        <div id="tier-list-container" class="tier-list-container">
             <div class="tier-wrap tier1">
                 <!-- <div class="tier-title"><span>Godlike</span></div> -->
                 <div class="tier-title"><span>✩✩✩<br>✩✩</span></div>
                 <div class="separator"></div>
                 <div id="tier1" class="tier"></div>
-                <div class="dragger-btn"></div>
+                <div class="handle"></div>
             </div>
             <div class="tier-wrap tier2">
                 <!-- <div class="tier-title"><span>Great</span></div> -->
                 <div class="tier-title"><span>✩&nbsp&nbsp✩<br>✩&nbsp&nbsp✩</span></div>
                 <div class="separator"></div>
                 <div id="tier2" class="tier"></div>
-                <div class="dragger-btn"></div>
+                <div class="handle"></div>
             </div>
             <div class="tier-wrap tier3">
                 <!-- <div class="tier-title"><span>Very Good</span></div> -->
                 <div class="tier-title"><span>✩✩✩</span></div>
                 <div class="separator"></div>
                 <div id="tier3" class="tier"></div>
-                <div class="dragger-btn"></div>
+                <div class="handle"></div>
             </div>
             <div class="tier-wrap tier4">
                 <!-- <div class="tier-title"><span>Good</span></div> -->
                 <div class="tier-title"><span>✩✩</span></div>
                 <div class="separator"></div>
                 <div id="tier4" class="tier"></div>
-                <div class="dragger-btn"></div>
+                <div class="handle"></div>
             </div>
             <div class="tier-wrap tier5">
                 <!-- <div class="tier-title"><span>Decent</span></div> -->
                 <div class="tier-title"><span>✩</span></div>
                 <div class="separator"></div>
                 <div id="tier5" class="tier"></div>
-                <div class="dragger-btn"></div>
+                <div class="handle"></div>
             </div>
         </div>
 
@@ -70,8 +71,8 @@
     </div>
 
     <script src="jquery-3.6.4.min.js"></script>
+    <script src='dragula.min.js'></script>
     <script src="tier-list.js"></script>
-
 
 </body>
 </html>

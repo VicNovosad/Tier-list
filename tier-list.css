@@ -210,7 +210,7 @@ h2.title {
     /* background: linear-gradient(0deg,#20201b 0%,#525244 3%,#525244 97%,#20201b 100%); */
 }
 
-.tier-wrap:not(.tier5)::after {
+.tier-wrap::after {
     content: "";
     position: absolute;
     width: 100%;
@@ -224,6 +224,10 @@ h2.title {
         );
         bottom: -2px;
         left: -1px;
+}
+
+.tier-wrap:last-of-type::after {
+    content: none;
 }
     
 .separator{
@@ -271,11 +275,19 @@ h2.title {
     flex-wrap: wrap;
 }
 
-.dragger-btn {
-    display: none;
-    height: 100%;
-    width: 50px;
-    background-color: rgb(91, 91, 91);
+.handle {
+    /* display: none; */
+    /* height: 100%; */
+    width: 20px;
+    /* background-color: rgb(91, 91, 91); */
+    background: rgba(255, 255, 255, 0.1);
+    background: rgba(82, 82, 68, 0.3);
+    /* color: rgba(255,255,255, 1); */
+    /* color: white; */
+    background-image: url(/assets/OOjs_UI_icon_draggable.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    /* border: 1px solid red; */
 }
 
 button {
