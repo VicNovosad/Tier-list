@@ -159,6 +159,8 @@ class UIHandler {
     init() {
         window.addEventListener('load', () => {
 
+            const body = document.body;
+
             var containers = Array.from(document.querySelectorAll('.tier, .cards-pond'));
             let tiers = dragula(containers, {
                 // direction: 'vertical',
@@ -169,6 +171,18 @@ class UIHandler {
                 moves: function (el, container, handle) {
                   return handle.classList.contains('handle');
                 }
+            });
+
+            // Add a drag event listener to the dragula instance
+            tiers.on('drag', () => {
+                // Disable scrolling by setting the 'overflow' CSS property of the body to 'hidden'
+                body.style.overflow = 'hidden';
+            });
+  
+            // Add a dragend event listener to the dragula instance
+            tiers.on('dragend', () => {
+                // Enable scrolling by setting the 'overflow' CSS property of the body to its default value ('auto' or '')
+                body.style.overflow = '';
             });
 
             console.log(tiers.containers)
